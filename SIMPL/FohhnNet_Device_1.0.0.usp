@@ -1,0 +1,329 @@
+/*
+Dealer Name: Fohhn
+Programmer: Niklas Westman - JaDeVa AB
+*/
+
+// #ENABLE_DYNAMIC
+// #SYMBOL_NAME ""
+// #HINT ""
+#DEFINE_CONSTANT MAX_INPUTS 4
+#DEFINE_CONSTANT MAX_OUTPUTS 4
+#DEFINE_CONSTANT STATUS_BITS 4
+#DEFINE_CONSTANT UDP 253
+#DEFINE_CONSTANT SERIAL 254
+// #CATEGORY 
+// #PRINT_TO_TRACE
+// #DIGITAL_EXPAND 
+// #ANALOG_SERIAL_EXPAND 
+// #OUTPUT_SHIFT 
+// #HELP_PDF_FILE
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+// #ENCODING_ASCII
+// #ENCODING_UTF16
+// #ENCODING_INHERIT_FROM_PARENT
+// #ENCODING_INHERIT_FROM_PROGRAM
+#HELP "Use the SIMPL Module with the same name"
+
+#INCLUDEPATH "..\\SIMPL SHARP\\Fohhn.FohhnNet\\FohhnNet_Device_CSharp\\bin\\Release"
+#USER_SIMPLSHARP_LIBRARY "FohhnNet_Device_CSharp"
+      
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT Start_Communication;
+DIGITAL_INPUT Stop_Communication;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT Poll_Routing;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT Power_On;
+DIGITAL_INPUT Power_Off;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT Output_Mute_On[MAX_OUTPUTS];
+DIGITAL_INPUT Output_Mute_Off[MAX_OUTPUTS];
+DIGITAL_INPUT _skip_;
+DIGITAL_INPUT Output_1_Input_Mute_On[MAX_INPUTS];
+DIGITAL_INPUT Output_1_Input_Mute_Off[MAX_INPUTS];
+DIGITAL_INPUT Output_2_Input_Mute_On[MAX_INPUTS];
+DIGITAL_INPUT Output_2_Input_Mute_Off[MAX_INPUTS];
+DIGITAL_INPUT Output_3_Input_Mute_On[MAX_INPUTS];
+DIGITAL_INPUT Output_3_Input_Mute_Off[MAX_INPUTS];
+DIGITAL_INPUT Output_4_Input_Mute_On[MAX_INPUTS];
+DIGITAL_INPUT Output_4_Input_Mute_Off[MAX_INPUTS, MAX_INPUTS];
+ANALOG_INPUT _skip_;
+STRING_INPUT Host[255];
+ANALOG_INPUT Port;
+STRING_INPUT _skip_;
+STRING_INPUT _skip_;
+STRING_INPUT Rx$[255];
+STRING_INPUT Custom_Command[255];
+STRING_INPUT _skip_;
+ANALOG_INPUT Log_Level;
+ANALOG_INPUT _skip_;
+ANALOG_INPUT Recall_Preset;
+ANALOG_INPUT _skip_;
+ANALOG_INPUT Output_Volume_Db[MAX_OUTPUTS];
+ANALOG_INPUT _skip_;
+ANALOG_INPUT Output_1_Input_Gain_Db[MAX_INPUTS];
+ANALOG_INPUT Output_2_Input_Gain_Db[MAX_INPUTS];
+ANALOG_INPUT Output_3_Input_Gain_Db[MAX_INPUTS];
+ANALOG_INPUT Output_4_Input_Gain_Db[MAX_INPUTS, MAX_INPUTS];
+
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Responding;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Power_Is_On;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Status_Bit[STATUS_BITS];
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Output_Mute_Is_On[MAX_OUTPUTS];
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Output_1_Input_Mute_Is_On[MAX_INPUTS];
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Output_2_Input_Mute_Is_On[MAX_INPUTS];
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Output_3_Input_Mute_Is_On[MAX_INPUTS];
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT Output_4_Input_Mute_Is_On[MAX_INPUTS];
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+DIGITAL_OUTPUT _skip_;
+STRING_OUTPUT Device_Alias;
+STRING_OUTPUT Firmware_Version;
+ANALOG_OUTPUT Temperature;
+STRING_OUTPUT _skip_;
+STRING_OUTPUT Tx$;
+STRING_OUTPUT Custom_Command_Response;
+STRING_OUTPUT _skip_;
+STRING_OUTPUT _skip_;
+STRING_OUTPUT _skip_;
+STRING_OUTPUT _skip_;
+STRING_OUTPUT _skip_;
+ANALOG_OUTPUT Current_Output_Volume_Db[MAX_OUTPUTS];
+ANALOG_OUTPUT _skip_;
+ANALOG_OUTPUT Current_Output_1_Input_Gain_Db[MAX_INPUTS];
+ANALOG_OUTPUT Current_Output_2_Input_Gain_Db[MAX_INPUTS];
+ANALOG_OUTPUT Current_Output_3_Input_Gain_Db[MAX_INPUTS];
+ANALOG_OUTPUT Current_Output_4_Input_Gain_Db[MAX_INPUTS, MAX_INPUTS];
+
+INTEGER_PARAMETER Connection_Type;
+INTEGER_PARAMETER Device_Id;
+STRING_PARAMETER Host$[255];
+INTEGER_PARAMETER Port#;
+INTEGER_PARAMETER Number_of_Inputs;
+INTEGER_PARAMETER Number_of_Outputs;
+INTEGER_PARAMETER Poll_Rate;
+
+#BEGIN_PARAMETER_PROPERTIES Connection_Type
+	propBounds = 253d, 254d;
+	propDefaultValue = 253d;
+#END_PARAMETER_PROPERTIES
+#BEGIN_PARAMETER_PROPERTIES Device_Id
+	propValidUnits = unitDecimal;
+	propDefaultUnit = unitDecimal;
+	propBounds = 1d, 255d;
+	propDefaultValue = 1d;
+#END_PARAMETER_PROPERTIES
+#BEGIN_PARAMETER_PROPERTIES Host$
+	propValidUnits = unitString;
+	propDefaultUnit = unitString;
+#END_PARAMETER_PROPERTIES
+#BEGIN_PARAMETER_PROPERTIES Port#
+	propValidUnits = unitDecimal;
+	propDefaultUnit = unitDecimal;
+	propDefaultValue = 2101d;
+#END_PARAMETER_PROPERTIES
+#BEGIN_PARAMETER_PROPERTIES Number_of_Inputs
+	propValidUnits = unitDecimal;
+	propDefaultUnit = unitDecimal;
+	propBounds = 1d, 4d;
+	propDefaultValue = 4d;
+#END_PARAMETER_PROPERTIES
+#BEGIN_PARAMETER_PROPERTIES Number_of_Outputs
+	propValidUnits = unitDecimal;
+	propDefaultUnit = unitDecimal;
+	propBounds = 1d, 4d;
+	propDefaultValue = 4d;
+#END_PARAMETER_PROPERTIES
+#BEGIN_PARAMETER_PROPERTIES Poll_Rate
+	propValidUnits = unitTime;
+	propDefaultUnit = unitTime;
+	propDefaultValue = 30s;
+#END_PARAMETER_PROPERTIES
+
+string _host[255];
+integer _port;
+ 
+FohhnNetDeviceWrapper _device;
+
+Callback Function OnSendSerial(string data) { Tx$ = data; }
+Callback Function OnRespondingChanged(integer value) { Responding = value; }
+Callback Function OnPowerChanged(integer value) { Power_Is_On = value; }
+Callback Function OnFirmwareVersionChanged(string value) { Firmware_Version = value; }
+Callback Function OnTemperatureChanged(integer value) {	Temperature = value; }
+Callback Function OnStatusBitsChanged() 
+{ 
+	integer i;
+	for (i = 1 to STATUS_BITS)
+		Status_Bit[i] = _device.StatusBits[i - 1];
+}
+Callback Function OnDeviceAliasChanged(string value) {	Device_Alias = value; }
+Callback Function OnOutputVolumeChanged(integer index, signed_integer value) { Current_Output_Volume_Db[index + 1] = value; }
+Callback Function OnOutputMuteChanged(integer index, integer value) { Output_Mute_Is_On[index + 1] = value; }
+Callback Function OnOutputRouteGainChanged(integer outputIndex, integer inputIndex, signed_integer value) 
+{ 
+	switch (outputIndex)
+	{
+    	case (0):
+			Current_Output_1_Input_Gain_Db[inputIndex + 1] = value; 		
+    	case (1):
+			Current_Output_2_Input_Gain_Db[inputIndex + 1] = value; 		
+    	case (2):
+			Current_Output_3_Input_Gain_Db[inputIndex + 1] = value; 		
+    	case (3):
+			Current_Output_4_Input_Gain_Db[inputIndex + 1] = value; 		
+	}
+}
+Callback Function OnOutputRouteMuteChanged(integer outputIndex, integer inputIndex, integer value) 
+{ 
+	switch (outputIndex)
+	{
+    	case (0):
+			Output_1_Input_Mute_Is_On[inputIndex + 1] = value; 		
+    	case (1):
+			Output_2_Input_Mute_Is_On[inputIndex + 1] = value; 		
+    	case (2):
+			Output_3_Input_Mute_Is_On[inputIndex + 1] = value; 		
+    	case (3):
+			Output_4_Input_Mute_Is_On[inputIndex + 1] = value; 		
+	}
+}
+Callback Function OnCustomCommandResponse(string data) 
+{
+	Custom_Command_Response = data;
+}
+                            
+Push Start_Communication { _device.StartCommunication(_host, _port); }
+Push Stop_Communication { _device.StopCommunication(); }
+
+Push Poll_Routing { _device.PollRouting(); }
+
+Push Power_On { _device.SetPower(1); }
+Push Power_Off { _device.SetPower(0); }
+
+Push Output_Mute_On { _device.SetOutputMute(GetLastModifiedArrayIndex() - 1, 1); }
+Push Output_Mute_Off { _device.SetOutputMute(GetLastModifiedArrayIndex() - 1, 0); }
+Change Output_Volume_Db
+{
+	integer number;
+	number = GetLastModifiedArrayIndex();
+	_device.SetOutputVolume(number - 1, Output_Volume_Db[number]);
+}
+
+Push Output_1_Input_Mute_On { _device.SetRouteMute(0, GetLastModifiedArrayIndex() - 1, 1); }
+Push Output_2_Input_Mute_On { _device.SetRouteMute(1, GetLastModifiedArrayIndex() - 1, 1); }
+Push Output_3_Input_Mute_On { _device.SetRouteMute(2, GetLastModifiedArrayIndex() - 1, 1); }
+Push Output_4_Input_Mute_On { _device.SetRouteMute(3, GetLastModifiedArrayIndex() - 1, 1); }
+Push Output_1_Input_Mute_Off { _device.SetRouteMute(0, GetLastModifiedArrayIndex() - 1, 0); }
+Push Output_2_Input_Mute_Off { _device.SetRouteMute(1, GetLastModifiedArrayIndex() - 1, 0); }
+Push Output_3_Input_Mute_Off { _device.SetRouteMute(2, GetLastModifiedArrayIndex() - 1, 0); }
+Push Output_4_Input_Mute_Off { _device.SetRouteMute(3, GetLastModifiedArrayIndex() - 1, 0); }
+Change Output_1_Input_Gain_Db
+{
+	integer number;
+	number = GetLastModifiedArrayIndex();
+	_device.SetRouteGain(0, number - 1, Output_1_Input_Gain_Db[number]);
+}
+Change Output_2_Input_Gain_Db
+{
+	integer number;
+	number = GetLastModifiedArrayIndex();
+	_device.SetRouteGain(1, number - 1, Output_2_Input_Gain_Db[number]);
+}
+
+Change Output_3_Input_Gain_Db
+{
+	integer number;
+	number = GetLastModifiedArrayIndex();
+	_device.SetRouteGain(2, number - 1, Output_3_Input_Gain_Db[number]);
+}
+Change Output_4_Input_Gain_Db
+{
+	integer number;
+	number = GetLastModifiedArrayIndex();
+	_device.SetRouteGain(3, number - 1, Output_4_Input_Gain_Db[number]);
+}
+
+Change Recall_Preset { _device.RecallPreset(Recall_Preset); }
+Change Host { _host = Host; }
+Change Port { _port = Port; }
+Change Rx$ { _device.HandleSerialResponse(Rx$);	}
+Change Log_Level { _device.SetLogLevel(Log_Level); }
+Change Custom_Command { _device.SendCustomCommand(Custom_Command); }
+
+Function Main()
+{
+	RegisterDelegate(_device, SendSerial, OnSendSerial);
+	RegisterDelegate(_device, RespondingChanged, OnRespondingChanged);
+	RegisterDelegate(_device, PowerChanged, OnPowerChanged);
+	RegisterDelegate(_device, FirmwareVersionChanged, OnFirmwareVersionChanged);
+	RegisterDelegate(_device, TemperatureChanged, OnTemperatureChanged);
+	RegisterDelegate(_device, StatusBitsChanged, OnStatusBitsChanged);
+	RegisterDelegate(_device, DeviceAliasChanged, OnDeviceAliasChanged);
+	RegisterDelegate(_device, OutputVolumeChanged, OnOutputVolumeChanged);
+	RegisterDelegate(_device, OutputMuteChanged, OnOutputMuteChanged);
+	RegisterDelegate(_device, OutputRouteGainChanged, OnOutputRouteGainChanged);
+	RegisterDelegate(_device, OutputRouteMuteChanged, OnOutputRouteMuteChanged);
+	RegisterDelegate(_device, CustomCommandResponse, OnCustomCommandResponse);
+
+	_host = Host$;
+	_port = Port#;
+
+    WaitForInitializationComplete();
+
+	_host = Host$;
+	_port = Port#;
+    
+	if (Connection_Type = UDP)
+		_device.InitUdp(Device_Id, Number_of_Inputs, Number_of_Outputs, Poll_Rate);
+	else if (Connection_Type = SERIAL)
+		_device.InitSerial(Device_Id, Number_of_Inputs, Number_of_Outputs, Poll_Rate);
+
+}
+
+

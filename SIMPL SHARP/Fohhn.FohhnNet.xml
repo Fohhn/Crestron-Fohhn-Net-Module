@@ -1,0 +1,533 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fohhn.FohhnNet</name>
+    </assembly>
+    <members>
+        <member name="M:Fohhn.FohhnNet.Response.#ctor(System.Byte[])">
+            <summary>
+            Parses a response
+            </summary>
+            <param name="responseBytes">Must include the delimiter (0xF0)</param>
+        </member>
+        <member name="T:Fohhn.FohhnNet.FohhnNetDeviceEventArgs">
+            <summary>
+            Contains information on what property has changed on FohhnNetDevice
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.#ctor(Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes,System.Boolean)">
+            <summary>
+            Contains information on what property has changed on FohhnNetDevice
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.#ctor(Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes,System.String)">
+            <summary>
+            Contains information on what property has changed on FohhnNetDevice
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.#ctor(Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes,System.Double)">
+            <summary>
+            Contains information on what property has changed on FohhnNetDevice
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.#ctor(Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes,System.Boolean[])">
+            <summary>
+            Contains information on what property has changed on FohhnNetDevice
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.ToString">
+            <summary>
+            Returns "ClassType - EventType: eventType, Value: value"
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.EventType">
+            <summary>
+            Contains which property has changed
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.BoolValue">
+            <summary>
+            Contains the new value for EventTypes: Responding, Power
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.StringValue">
+            <summary>
+            Contains the new value for EventTypes: FirmwareVersion, DeviceAlias
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.DoubleValue">
+            <summary>
+            Contains the new value for EventTypes: Temperature
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.BoolArrayValue">
+            <summary>
+            Contains the new value for EventTypes: StatusBits
+            </summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes">
+            <summary>
+            Contains possible properties that can change
+            </summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes.Responding">
+            <summary>See BoolValue</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes.Power">
+            <summary>See BoolValue</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes.FirmwareVersion">
+            <summary>See StringValue</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes.Temperature">
+            <summary>See DoubleValue</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes.StatusBits">
+            <summary>See BoolArrayValue</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.FohhnNetDeviceEventArgs.FohhnNetDeviceEventTypes.DeviceAlias">
+            <summary>See StringValue</summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint">
+            <summary>
+            This class represents an output routing point on the device
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint.SetGainAndMute(System.Double,System.Boolean)">
+            <summary>
+            Sets gain and mute for this routing point
+            </summary>
+            <param name="gainDb">In decibels, -80.0 to 12.0</param>
+            <param name="mute">Set true to mute this routing point</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint.PollRoute">
+            <summary>
+            This will poll this routing point for all gain and mute.
+            This is done automatically only on connection.
+            It requires a lot of commands to be sent so you have to manually do this if you need it.
+            There are methods for this on each output, or on the main device as well.
+            </summary>
+        </member>
+        <member name="E:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint.Events">
+            <summary>
+            This will be trigged when a property changes
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint.Input">
+            <summary>
+            The input for this routing point
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint.Output">
+            <summary>
+            The output for this routing point
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint.IsMuted">
+            <summary>
+            Returns true if the routing point is muted
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePoint.GainDb">
+            <summary>
+            Returns the current gain of the routing point in dB (-80.0 to 12.0)
+            </summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Logging.FohhnNetLoggingDelegate">
+            <summary>
+            A delegate that contains a method reference to your own logging writer
+            </summary>
+            <param name="level">At which level the message is written</param>
+            <param name="message">The message</param>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput">
+            <summary>
+            This class represents an output on the device
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.SetVolumeAndMute(System.Double,System.Boolean)">
+            <summary>
+            Sets volume and mute for this output
+            </summary>
+            <param name="volumeDb">In decibels, -80.0 to 12.0</param>
+            <param name="mute">Set true to mute this output</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.SetMute(System.Boolean)">
+            <summary>
+            Sets the mute state for this output
+            </summary>
+            <param name="mute">Set true to mute this output</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.PollRouting">
+            <summary>
+            This will poll this output for all routing information.
+            This is done automatically only on connection.
+            It requires a lot of commands to be sent so you have to manually do this if you need it.
+            There are methods for this on each routing point, or on the main device as well.
+            </summary>
+        </member>
+        <member name="E:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.Events">
+            <summary>
+            This will be trigged when a property changes
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.Number">
+            <summary>
+            The 1-based number of this output
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.InputRoutes">
+            <summary>
+            Contains every input that you can route to this output. This is where you perform routing operations
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.IsMuted">
+            <summary>
+            Returns true if the output is muted
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutput.VolumeDb">
+            <summary>
+            Returns the current volume of the output in dB (-80.0 to 12.0)
+            </summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs">
+            <summary>
+            Contains information on what property has changed on FohhnNetDeviceRoutePoint
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.#ctor(Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.FohhnNetDeviceRoutePointEventTypes,System.Boolean)">
+            <summary>
+            Contains information on what property has changed on FohhnNetDeviceRoutePoint
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.#ctor(Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.FohhnNetDeviceRoutePointEventTypes,System.Double)">
+            <summary>
+            Contains information on what property has changed on FohhnNetDeviceRoutePoint
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.ToString">
+            <summary>
+            Returns "ClassType - EventType: eventType, Value: value"
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.EventType">
+            <summary>
+            Contains which property has changed
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.BoolValue">
+            <summary>
+            Contains the new value for EventTypes: Muted
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.DoubleValue">
+            <summary>
+            Contains the new value for EventTypes: Gain
+            </summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.FohhnNetDeviceRoutePointEventTypes">
+            <summary>
+            Contains possible properties that can change
+            </summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.FohhnNetDeviceRoutePointEventTypes.Gain">
+            <summary>See DoubleValue</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.Routing.FohhnNetDeviceRoutePointEventArgs.FohhnNetDeviceRoutePointEventTypes.Muted">
+            <summary>See BoolValue</summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs">
+            <summary>
+            Contains information on what property has changed on FohhnNetDeviceOutput
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.#ctor(Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.FohhnNetDeviceOutputEventTypes,System.Boolean)">
+            <summary>
+            Contains information on what property has changed on th FohhnNetDeviceOutput
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.#ctor(Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.FohhnNetDeviceOutputEventTypes,System.Double)">
+            <summary>
+            Contains information on what property has changed on th FohhnNetDeviceOutput
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.ToString">
+            <summary>
+            Returns "ClassType - EventType: eventType, Value: value"
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.EventType">
+            <summary>
+            Contains which property has changed
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.BoolValue">
+            <summary>
+            Contains the new value for EventTypes: Muted
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.DoubleValue">
+            <summary>
+            Contains the new value for EventTypes: Volume
+            </summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.FohhnNetDeviceOutputEventTypes">
+            <summary>
+            Contains possible properties that can change
+            </summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.FohhnNetDeviceOutputEventTypes.Volume">
+            <summary>See DoubleValue</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.Outputs.FohhnNetDeviceOutputEventArgs.FohhnNetDeviceOutputEventTypes.Muted">
+            <summary>See BoolValue</summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.FohhnNetDeviceConfig">
+            <summary>
+            This class contains information about a Fohhn device that is necessary to set upp the FohhnNetDevice class
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDeviceConfig.#ctor(System.Byte,System.Int32,System.Int32)">
+            <summary>
+            This class contains information about a Fohhn device that is necessary to set upp the FohhnNetDevice class
+            </summary>
+            <param name="deviceId">The device id of the device to control</param>
+            <param name="inputs">The number of inputs on the device</param>
+            <param name="outputs">The number of outputs on the device</param>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceConfig.Id">
+            <summary>
+            The device id of the device to control
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceConfig.Inputs">
+            <summary>
+            The number of inputs on the device
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDeviceConfig.Outputs">
+            <summary>
+            The number of outputs on the device
+            </summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.FohhnNetDevice">
+            <summary>
+            Class used to control any Fohhn device that supports FohhnNet over UDP or RS485.
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.#ctor(Fohhn.FohhnNet.FohhnNetDeviceConfig,Fohhn.FohhnNet.Logging.FohhnNetLoggingDelegate)">
+            <summary>
+            Class used to control any Fohhn device that supports FohhnNet over UDP or RS485.
+            This constructor uses UDP
+            </summary>
+            <param name="config">An object containing information about the device</param>
+            <param name="logCallback">
+            You may provide a your own method for logging. Set to null to use default.
+            The default logger writes to errorlog if this is a server-based processor. Otherwise prints to console, and errorlog if loglevel is an error
+            </param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.#ctor(Fohhn.FohhnNet.FohhnNetDeviceConfig,System.String,Fohhn.FohhnNet.Logging.FohhnNetLoggingDelegate)">
+            <summary>
+            Class used to control any Fohhn device that supports FohhnNet over UDP or RS485.
+            This constructor uses UDP
+            </summary>
+            <param name="config">An object containing information about the device</param>
+            <param name="host">The Ip/FQDN/Hostname of the device to connect to over UDP</param>
+            <param name="logCallback">
+            You may provide a your own method for logging. Set to null to use default.
+            The default logger writes to errorlog if this is a server-based processor. Otherwise prints to console, and errorlog if loglevel is an error
+            </param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.#ctor(Fohhn.FohhnNet.FohhnNetDeviceConfig,System.String,System.Int32,Fohhn.FohhnNet.Logging.FohhnNetLoggingDelegate)">
+            <summary>
+            Class used to control any Fohhn device that supports FohhnNet over UDP or RS485.
+            This constructor uses UDP
+            </summary>
+            <param name="config">An object containing information about the device</param>
+            <param name="host">The Ip/FQDN/Hostname of the device to connect to over UDP</param>
+            <param name="port">The remote port number to use for UDP</param>
+            <param name="logCallback">
+            You may provide a your own method for logging. Set to null to use default.
+            The default logger writes to errorlog if this is a server-based processor. Otherwise prints to console, and errorlog if loglevel is an error
+            </param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.#ctor(Fohhn.FohhnNet.FohhnNetDeviceConfig,System.Action{System.String},Fohhn.FohhnNet.Logging.FohhnNetLoggingDelegate)">
+            <summary>
+            Class used to control any Fohhn device that supports FohhnNet over UDP or RS485.
+            This constructor uses RS485. When you get a serial response from the device you have to call HandleSerialResponse(data) with the data.
+            </summary>
+            <param name="config">An object containing information about the device</param>
+            <param name="sendCommand">Provide a method to use for sending commands to the serial port</param>
+            <param name="logCallback">
+            You may provide a your own method for logging. Set to null to use default.
+            The default logger writes to errorlog if this is a server-based processor. Otherwise prints to console, and errorlog if loglevel is an error
+            </param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.StartCommunication">
+            <summary>
+            Starts communicating with the device.
+            Use this if RS485 is used, or if you have supplied Host address in constructor or directly on the Host property.
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.StartCommunication(System.String)">
+            <summary>
+            Starts communicating with the device using UDP on remote port 2101
+            </summary>
+            <param name="host">The Ip/FQDN/Hostname of the device to connect to over UDP</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.StartCommunication(System.String,System.Int32)">
+            <summary>
+            Starts communicating with the device using UDP
+            </summary>
+            <param name="host">The Ip/FQDN/Hostname of the device to connect to over UDP</param>
+            <param name="port">The remote port number to use for UDP</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.StopCommunication">
+            <summary>
+            Stops communicating with the device
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.RecallPreset(System.Int32)">
+            <summary>
+            Recalls a preset in the device
+            </summary>
+            <param name="number">Range 1-100</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.SetPower(System.Boolean)">
+            <summary>
+            Sets the standby state of the device
+            </summary>
+            <param name="powerOn">False sets the device in standby</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.PollRouting">
+            <summary>
+            This will poll all outputs for all routing information.
+            This is done automatically only on connection.
+            It requires a lot of commands to be sent so you have to manually do this if you need it.
+            There are methods for this on each output and routing point.
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.HandleSerialResponse(System.String)">
+            <summary>
+            Call this method when you get serial data from the device
+            </summary>
+            <param name="data">The data received from the device</param>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.Dispose">
+            <summary>
+            Use this on program stop, or whenever you want to dispose the device
+            </summary>
+        </member>
+        <member name="M:Fohhn.FohhnNet.FohhnNetDevice.SendCustomCommand(System.Byte[],System.Action{System.Byte[]})">
+            <summary>
+            Method to send custom commands.
+            Used if you want additional functionality that this library does not provide
+            </summary>
+            <param name="bytes">The bytes to send</param>
+            <param name="responseCallback">Supply a method that will be called when/if we get a response</param>
+        </member>
+        <member name="E:Fohhn.FohhnNet.FohhnNetDevice.Events">
+            <summary>
+            This will be trigged when a property changes
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.DeviceId">
+            <summary>
+            This is the Id of the device
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.LogLevel">
+            <summary>
+            Get or set the current log level. 
+            Change this to output the desired level of logging.
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.Outputs">
+            <summary>
+            Contains all outputs on the device
+            This is where you control things such as volume and mute
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.Responding">
+            <summary>
+            Returns true if the device is responding properly to commands. 
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.Host">
+            <summary>
+            Get or set the Ip/FQDN/Hostname of the device to connect to over UDP
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.Port">
+            <summary>
+            Get or set the remote Port to use for UDP
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.PowerIsOn">
+            <summary>
+            Returns false if the device is in standby
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.DeviceAlias">
+            <summary>
+            Returns the alias of the device. If no alias is set, this will be an empty string
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.FirmwareVersion">
+            <summary>
+            Returns the firmware version of the device. Example "3.2.2"
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.Temperature">
+            <summary>
+            Returns the temperature in Celsius of the device
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.StatusBits">
+            <summary>
+            This contains some status about things. 
+            This is different for every Fohhn device type. It contains 4 bits.
+            
+            DLI-130/230/330/430     | 0: Fault,     | 1: Audio (AES), | 2: Pilotton     |                |
+            FV-100/200              | 0: Fault,     | 1: Audio (AES)  |                 |                |
+            LFI-120/220/350/450     | 0: Fault,     | 1: Piltoton     |                 |                |
+            FMI-100/110/400         | 0: Fault,     | 1: Piltoton     |                 |                |
+            DI-2.2000/4000          | 0: Protect 1, | 1: Protect 2    |                 |                |
+            DI-4.1000/2000          | 0: Protect 1, | 1: Protect 2,   | 2: Protect 3,   | 3: Protect 4   | 
+            DFM-100/110/400         | 0: Fault,     | 1: Audio (AES), | 2: Pilotton     |                | 
+            MA-4.100/600            | 0: Protect 1, | 1: Protect 2,   | 2: Protect 3,   | 3: Protect 4   | 
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.FohhnNetDevice.PollRateMs">
+            <summary>
+            Get or set at which rate the device should be polled (in milliseconds). It's recommended to not go lower than 5000.
+            Default is 30000
+            </summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Logging.LogLevel">
+            <summary>
+            Available logging levels that this library uses
+            </summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.Logging.LogLevel.Debug">
+            <summary>This level of logging is very chatty and includes logging raw data, etc</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.Logging.LogLevel.Info">
+            <summary>This level contains informative messages</summary>
+        </member>
+        <member name="F:Fohhn.FohhnNet.Logging.LogLevel.Error">
+            <summary>This level contains real errors</summary>
+        </member>
+        <member name="T:Fohhn.FohhnNet.Inputs.FohhnNetDeviceInput">
+            <summary>
+            This class represents an input on the device
+            </summary>
+        </member>
+        <member name="P:Fohhn.FohhnNet.Inputs.FohhnNetDeviceInput.Number">
+            <summary>
+            The 1-based number of the input
+            </summary>
+        </member>
+    </members>
+</doc>

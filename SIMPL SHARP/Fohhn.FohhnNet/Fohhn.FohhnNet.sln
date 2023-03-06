@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fohhn.FohhnNet", "Fohhn.FohhnNet\Fohhn.FohhnNet.csproj", "{D0B6A142-C6F2-48D6-8889-FD51FF17391D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fohhn.FohhnNet.Demo", "Fohhn.FohhnNet.Demo\Fohhn.FohhnNet.Demo.csproj", "{8F4BB917-4222-4746-930B-0A40E1491BE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FohhnNet_Device_CSharp", "FohhnNet_Device_CSharp\FohhnNet_Device_CSharp.csproj", "{9CE3598B-E149-4947-B782-8D00583D09BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0B6A142-C6F2-48D6-8889-FD51FF17391D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B6A142-C6F2-48D6-8889-FD51FF17391D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B6A142-C6F2-48D6-8889-FD51FF17391D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B6A142-C6F2-48D6-8889-FD51FF17391D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4BB917-4222-4746-930B-0A40E1491BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4BB917-4222-4746-930B-0A40E1491BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4BB917-4222-4746-930B-0A40E1491BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4BB917-4222-4746-930B-0A40E1491BE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE3598B-E149-4947-B782-8D00583D09BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE3598B-E149-4947-B782-8D00583D09BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE3598B-E149-4947-B782-8D00583D09BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE3598B-E149-4947-B782-8D00583D09BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
